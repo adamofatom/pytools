@@ -38,9 +38,12 @@ def parse_html(html):
 
 def main():
     url = DOWNLOAD_URL
-
-    # 存储文本至当前目录
-    with codecs.open(os.path.join(os.path.dirname(__file__), 'dbbooks'), 'wb', encoding='utf-8') as fp:
+    save_dir = {
+        'path': os.path.join(os.path.dirname(__file__).replace(os.path.dirname(__file__), 'dataset')),
+        'filename': 'dbbooks'
+    }
+    # TODO 调整存储文本
+    with codecs.open(os.path.join(save_dir['path'], save_dir['filename']), 'wb', encoding='utf-8') as fp:
         print(os.getcwd())
         while url:
             html = download_page(url)
