@@ -25,10 +25,10 @@ def save2csv(data):
         os.path.join(
             os.path.dirname(__file__).replace(
                 os.path.dirname(__file__), 'dataset')),
-        'filename':
-        data.iloc[0, 0].replace(' ', '')
+        'fn':
+        data.iloc[0, 0].replace(' ', '') + '.csv'
     }
-    data.to_csv(os.path.join(save_dir['path'], save_dir['filename']))
+    data.to_csv(os.path.join(save_dir['path'], save_dir['fn']), index=False)
 
 
 def crawler(url):
@@ -52,9 +52,10 @@ def crawler(url):
 
     a = np.reshape(temp, (int(len(temp) / 8), 8))
     df = pd.DataFrame(data=a, columns=col_names)
-    save2csv(df)
-    print('%s is ok. \n' % url)
-    time.sleep(10)
+    if not df.empty:  # 判断df是否为空，居然还会有空集，这是万万没想到的。。。
+        save2csv(df)
+        print('%s is ok. \n' % url)
+        time.sleep(10)
 
 
 def main():
