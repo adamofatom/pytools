@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # encoding=utf-8
-
 """
 爬取豆瓣图书TOP250 - 完整示例代码
 """
@@ -13,9 +12,12 @@ DOWNLOAD_URL = 'http://book.douban.com/top250/'
 
 
 def download_page(url):
-    return requests.get(url, headers={
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0'
-    }).content
+    return requests.get(
+        url,
+        headers={
+            'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0'
+        }).content
 
 
 def parse_html(html):
@@ -39,11 +41,18 @@ def parse_html(html):
 def main():
     url = DOWNLOAD_URL
     save_dir = {
-        'path': os.path.join(os.path.dirname(__file__).replace(os.path.dirname(__file__), 'dataset')),
-        'filename': 'dbbooks'
+        'path':
+        os.path.join(
+            os.path.dirname(__file__).replace(
+                os.path.dirname(__file__), 'dataset')),
+        'filename':
+        'dbbooks'
     }
     # TODO 调整存储文本
-    with codecs.open(os.path.join(save_dir['path'], save_dir['filename']), 'wb', encoding='utf-8') as fp:
+    with codecs.open(
+            os.path.join(save_dir['path'], save_dir['filename']),
+            'wb',
+            encoding='utf-8') as fp:
         print(os.getcwd())
         while url:
             html = download_page(url)
