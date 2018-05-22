@@ -53,6 +53,7 @@ notes = []
 s = requests.session()
 s.keep_alive = False
 
+
 def rb_crawler(url):
     headers = {
         'User-Agent':
@@ -76,6 +77,7 @@ def rb_crawler(url):
 
     else:
         print(url + " 链接有误")
+
 
 for url in df:
     rb_crawler(url)
