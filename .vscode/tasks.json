@@ -4,9 +4,16 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "echo",
+            "label": "python3",
             "type": "shell",
-            "command": "echo Hello"
+            "command": "${config:python.pythonPath}",
+            "args": [
+                "${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
         }
     ]
 }
